@@ -129,19 +129,44 @@ const customer = {
 
 // Function to add customer attributes
 
-function addProperties(faveMelon = "Cantaloupe", numPets = 2) {
+function addProperties(faveMelon="Cantaloupe", numPets=2) {
     customer["Favorite Melon"] = faveMelon;
     customer["Number of Pets"] = numPets;
 }
 
-// addProperties('Casaba', 2);
 
 // Add attributes for this user
+addProperties('Casaba', 2);
 
 
 // ///////////////////////////////////////////////////////
 // Getting a Business Loan
-
+function returnInterestRate(income, customer){
+    let preferredCustomer = false;
+    if (customer['Favorite Melon'] === 'Casaba'
+        || customer['Number of Pets']  >= 5) {
+        preferredCustomer = true;
+    };
+    if (income < 100000){
+        if preferredCustomer{
+            return '5%';
+        }
+        else{
+            return '8%';
+        }
+    }
+    else if(income < 200000){
+         if preferredCustomer{
+            return '4%';
+        }
+        else{
+            return '7%';
+        }
+    }
+    else{
+        return '4%';
+    }
+}
 
 // Function to return loan rate
 
