@@ -40,7 +40,7 @@ function showAddresses(addresses){
 function showPhoneNums(phoneNumbers) {
     console.log("Phone Numbers:");
     for (let phoneNumber of phoneNumbers) {
-        console.log(phoneNumber[0] + ": " + phoneNumber[1]);
+        console.log(`\t ${phoneNumber[0]} : ${phoneNumber[1]}`);
     }
 }
 
@@ -57,16 +57,16 @@ function addTransaction(date, amount) {
 }
 
 // Use the function to add transactions
-addTransaction("May-2", -500)
-addTransaction("May-13", 1200)
-addTransaction("May-15", -100)
-addTransaction("May-21", -359)
-addTransaction("May-29", 2200)
+addTransaction("May-2", -500);
+addTransaction("May-13", 1200);
+addTransaction("May-15", -100);
+addTransaction("May-21", -359);
+addTransaction("May-29", 2200);
 
 
 // Add function to show balance status
 function showBalanceStatus(amount){
-    console.log(`balance: ${amount}`);
+    console.log(`Balance: ${amount}`);
     if (amount < 0){
         console.log("You are overdrawn!");
     }
@@ -86,12 +86,12 @@ function showTransactions(transactions, beginningBalance) {
     for (let transaction of transactions) {
         let transactionType;
 
-
         if (transaction[1] < 0) {
-            transactionType = "withdrawal"
+            transactionType = "withdrawal";
         }
+
         else {
-            transactionType = "deposit"
+            transactionType = "deposit";
         }
 
         newBalance = beginningBalance + transaction[1];
@@ -100,18 +100,15 @@ function showTransactions(transactions, beginningBalance) {
             newBalance = newBalance - 25;
             console.log('$25 fee for overdraw :(');
         }
-
-        console.log(`Transaction Date: ${transaction[0]},
-                    ${transactionType}, ${transaction[1]},
-                      ${newBalance}`);
+        console.log(`Transaction Date: ${transaction[0]}, ${transactionType}, ${transaction[1]}, ${newBalance}`);
     }
 
-    console.log(newBalance);
+    //console.log(newBalance);
     showBalanceStatus(newBalance);
 }
 
 let startingBalance = 26000;
-showTransactions(transactions, startingBalance);
+// showTransactions(transactions, startingBalance);
 
 // ///////////////////////////////////////////////////////
 // All Customer Info:
@@ -141,14 +138,17 @@ addProperties('Casaba', 2);
 
 // ///////////////////////////////////////////////////////
 // Getting a Business Loan
+
+
+// Function to return loan rate
 function returnInterestRate(income, customer){
     let preferredCustomer = false;
-    if (customer['Favorite Melon'] === 'Casaba'
-        || customer['Number of Pets']  >= 5) {
+    if (customer['Favorite Melon'] === 'Casaba'||
+        customer['Number of Pets']  >= 5){
         preferredCustomer = true;
-    };
+    }
     if (income < 100000){
-        if preferredCustomer{
+        if (preferredCustomer){
             return '5%';
         }
         else{
@@ -156,27 +156,32 @@ function returnInterestRate(income, customer){
         }
     }
     else if(income < 200000){
-         if preferredCustomer{
+         if (preferredCustomer){
             return '4%';
         }
         else{
             return '7%';
         }
     }
-    else{
+    else {
         return '4%';
     }
 }
-
-// Function to return loan rate
-
 
 // ///////////////////////////////////////////////////////
 // Account Report
 
 
 // Add function to show bank customer report
-
+function showAccountReport(customer){
+    printInfo(customer['Account Holder'], customer['Account Number'], customer['Business Name']);
+    showAddresses(customer['Addresses']);
+    showPhoneNums(customer['Phone Numbers']);
+    showTransactions(customer['Transactions'], customer['Starting Balance']);
+    if (customer['Numer of Pets'] >= 5 || customer['Favorite Melon'] === 'Casaba'){
+        console.log('Congratulations on being a premiere customer!' );
+    }
+}
 
 
 // ///////////////////////////////////////////////////////
